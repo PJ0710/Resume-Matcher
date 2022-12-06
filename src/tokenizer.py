@@ -14,9 +14,7 @@ def tokenize(path):
     pdf_content = []
 
     with pdfplumber.open(rf'{path}') as pdf:
-        
-        first_page = pdf.pages[1]
-        
+               
     
         for i in range(len(pdf.pages)):
             pageObj = pdf.pages[i]
