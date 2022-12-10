@@ -13,8 +13,12 @@ function App() {
   const [fileURL, setFileURL] = useState("");
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
   const [query, setQuery] = useState("");
+  const [feedback, setFeedback] = useState({});
+
+  console.log(feedback);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setFeedback({})
     await fetch("http://localhost:8000/resume/", {
       method: "POST",
       headers: {
@@ -119,6 +123,22 @@ function App() {
             <p>No resume</p>
           )}
         </div>
+      </div>
+      <div style={{
+        padding: "10px"
+      }}>
+        <button onClick={(event)=>{ setFeedback((state)=>{
+          return {
+            ...state,
+            [currResume]: 1
+          }
+        }) }} style={{ marginRight: "10px" }} >Relevant</button>
+        <button onClick={(event)=>{ setFeedback((state)=>{
+          return {
+            ...state,
+            [currResume]: 0
+          }
+        }) }}>Not Relevant</button>
       </div>
     </div>
   );
