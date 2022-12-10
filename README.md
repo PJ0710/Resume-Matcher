@@ -8,4 +8,21 @@ Team Details-
 A system to perform keyword search on CV/Resume and rank them by keyword matches
 
 ## How to use
-Copy all your resume PDFs in the _/dependency/documents/_ folder. Run the _main.py_ and enter your search query.
+If Django and restframework is not installed run:
+    ```pip install Django```
+    ```pip install djangorestframework```
+    ```pip install markdown```
+    ```pip install django-filter```
+    ```pip install django-cors-headers```
+
+If requests is not installed run:
+    ```pip install requests```
+
+Run the followwing commands:
+    Run server on one terminal:
+        ```cd .\server\```
+        ```python manage.py runserver```
+    Run the application on another terminal:
+        ```cd .\client\```
+        ```npm i --force```
+        ```npm start```

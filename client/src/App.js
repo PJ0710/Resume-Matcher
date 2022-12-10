@@ -13,8 +13,12 @@ function App() {
   const [fileURL, setFileURL] = useState("");
   const defaultLayoutPluginInstance = defaultLayoutPlugin();
   const [query, setQuery] = useState("");
+  const [feedback, setFeedback] = useState({});
+
+  console.log(feedback);
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setFeedback({})
     await fetch("http://localhost:8000/resume/", {
       method: "POST",
       headers: {
@@ -26,7 +30,12 @@ function App() {
       .then((res) => res.json())
       .then((data) => {
         console.log(data.data.split(/[$]/i));
-        setResumeList([...data.data.split(/[$]/i)]);
+        let resumeList = [...data.data.split(/[$]/i)]
+        if(resumeList[0]=="") {
+          setResumeList([])
+        } else {
+          setResumeList(resumeList);
+        }
       })
       .catch((err) => console.log(err));
   };
@@ -51,6 +60,7 @@ function App() {
   };
   return (
     <div className="App">
+      <h1>Resume Retrieval</h1>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
@@ -113,6 +123,22 @@ function App() {
             <p>No resume</p>
           )}
         </div>
+      </div>
+      <div style={{
+        padding: "10px"
+      }}>
+        <button onClick={(event)=>{ setFeedback((state)=>{
+          return {
+            ...state,
+            [currResume]: 1
+          }
+        }) }} style={{ marginRight: "10px" }} >Relevant</button>
+        <button onClick={(event)=>{ setFeedback((state)=>{
+          return {
+            ...state,
+            [currResume]: 0
+          }
+        }) }}>Not Relevant</button>
       </div>
     </div>
   );
