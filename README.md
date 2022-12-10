@@ -8,3 +8,7 @@ Team Details-
 A system to perform keyword search on CV/Resume and rank them by keyword matches
 
 ## How to use
+If Django is not installed run:
+    ```pip install Django```
+
+Run the followwing commands:
